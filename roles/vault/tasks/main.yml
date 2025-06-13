@@ -1,10 +1,10 @@
 - name: Set prompt name command
   ansible.builtin.shell: set-prompt {{tool_name}}
 
-- name: Download the vault repo
+- name: Download Hashicorp repo file
   ansible.builtin.get_url:
     url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-    dest: /etc/repos.d/hashicorp.repo
+    dest: /etc/yum.repos.d/hashicorp.repo
 
 - name: Install the vault
   ansible.builtin.dnf:
