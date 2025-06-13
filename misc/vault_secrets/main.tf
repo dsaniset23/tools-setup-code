@@ -139,3 +139,15 @@ resource "vault_generic_secret" "rabbitmq" {
 EOT
 }
 
+resource "vault_generic_secret" "dispatch" {
+  path = "${vault_mount.roboshop-dev.path}/dispatch"
+
+  data_json = <<EOT
+{
+  "user" : "roboshop",
+  "AMQP_HOST" : "rabbitmq-dev.devops24.shop"
+  "AMQP_USER" : "roboshop",
+  "AMQP_PASS" : "roboshop123"
+}
+EOT
+}
