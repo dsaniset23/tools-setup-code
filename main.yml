@@ -1,0 +1,5 @@
+- name: Generic tools setup code
+  hosts: all
+  become: yes
+  roles:
+    - "{{tool_name}}"
