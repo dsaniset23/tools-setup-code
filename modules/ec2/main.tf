@@ -8,7 +8,7 @@ terraform {
 }
 
 resource "aws_security_group" "sg" {
-  name        = "${tool_name}-sg"
+  name        = "${var.tool_name}-sg"
   description = "Allow TLS inbound traffic and all outbound traffic"
 
   ingress {
