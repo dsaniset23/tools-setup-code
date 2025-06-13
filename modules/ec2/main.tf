@@ -33,7 +33,7 @@ resource "aws_security_group" "sg" {
   }
 
   tags = {
-    name = "${var.tool_name}-sg"
+    Name = "${var.tool_name}-sg"
   }
 }
 
@@ -51,7 +51,7 @@ resource "aws_instance" "instance" {
   vpc_security_group_ids = [aws_security_group.sg.id]
 
   tags = {
-    name= var.tool_name
+    Name= var.tool_name
   }
 }
 
