@@ -9,7 +9,7 @@
 - name: Install the vault
   ansible.builtin.dnf:
     name: vault
-    state: Installed
+    state: installed
 
 - name: Copy conf file
   ansible.builtin.copy:
