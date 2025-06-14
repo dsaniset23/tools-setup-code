@@ -55,7 +55,8 @@ resource "vault_generic_secret" "catalogue" {
   "DB_TYPE": "mongo",
   "APP_GIT_URL": "https://github.com/roboshop-devops-project-v3/catalogue",
   "DB_HOST": "mongodb-dev.devops24.shop",
-  "SCHEMA_FILE": "db/master-data.js"
+  "SCHEMA_FILE": "db/master-data.js",
+  "user": "roboshop"
 }
 EOT
 }
