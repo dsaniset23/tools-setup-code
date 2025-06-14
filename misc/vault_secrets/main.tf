@@ -4,6 +4,12 @@ terraform {
     key    = "vault_secrets/terraform.state"
     region = "us-east-1"
   }
+  required_providers {
+    vault = {
+      source  = "hashicorp/vault"
+      version = "4.5.0"
+    }
+  }
 }
 
 provider "vault" {
@@ -19,6 +25,13 @@ resource "vault_mount" "roboshop-dev" {
   type        = "kv"
   options     = { version = "2" }
   description = "RoboShop Dev Secrets"
+}
+
+resource "vault_mount" "infra-secrets" {
+  path = "infra-secrets"
+  type = "kv"
+  options     = { version = "2" }
+  description = "Infra secrets"
 }
 
 resource "vault_generic_secret" "frontend" {
@@ -149,6 +162,16 @@ resource "vault_generic_secret" "dispatch" {
   "AMQP_HOST" : "rabbitmq-dev.devops24.shop",
   "AMQP_USER" : "roboshop",
   "AMQP_PASS" : "roboshop123"
+}
+EOT
+}
+
+resource "vault_generic_secret" "ssh" {
+  path = "${vault_mount.infra-secrets.path}/ssh"
+  data_json      = <<EOT
+{
+  "password" : "DevOps321"
+  "user" : "ec2-user"
 }
 EOT
 }
