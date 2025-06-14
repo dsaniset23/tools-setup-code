@@ -168,9 +168,10 @@ EOT
 
 resource "vault_generic_secret" "ssh" {
   path = "${vault_mount.infra-secrets.path}/ssh"
-  data_json      = <<EOT
+
+  data_json = <<EOT
 {
-  "password" : "DevOps321"
+  "password" : "DevOps321",
   "user" : "ec2-user"
 }
 EOT
