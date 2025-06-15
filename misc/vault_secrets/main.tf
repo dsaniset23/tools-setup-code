@@ -92,7 +92,7 @@ resource "vault_generic_secret" "cart" {
   data_json = <<EOT
 {
   "REDIS_HOST": "redis-dev.devops24.shop",
-  "CATALOGUE_HOST" : "catalogue",
+  "CATALOGUE_HOST" : "catalogue-dev.devops24.shop",
   "CATALOGUE_PORT" : "8080"
 }
 EOT
@@ -103,7 +103,7 @@ resource "vault_generic_secret" "shipping" {
 
   data_json = <<EOT
 {
-  "CART_ENDPOINT": "cart:8080",
+  "CART_ENDPOINT": "cart-dev.devops24.shop:8080",
   "DB_HOST" : "mysql-dev.devops24.shop",
   "mysql_root_password" : "RoboShop@1",
   "DB_TYPE": "mysql",
@@ -121,9 +121,9 @@ resource "vault_generic_secret" "payment" {
 
   data_json = <<EOT
 {
-  "CART_HOST" : "cart",
+  "CART_HOST" : "cart-dev.devops24.shop",
   "CART_PORT" : "8080",
-  "USER_HOST" : "user",
+  "USER_HOST" : "user-dev.devops24.shop",
   "USER_PORT" : "8080",
   "AMQP_HOST" : "rabbitmq-dev.devops24.shop",
   "AMQP_USER" : "roboshop",
