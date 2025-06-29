@@ -1,0 +1,47 @@
+- name: Set prompt name command
+  ansible.builtin.shell: set-prompt {{ tool_name }}
+
+- name: Add github runner user
+  ansible.builtin.user:
+    name: github-runner
+
+- name: Create directory
+  ansible.builtin.files:
+    name: actions-runner
+    status: directory
+    owner: github-runner
+    group: github-runner
+
+- name: Download the file
+  ansible.builtin.unarchive:
+    src: https://github.com/actions/runner/releases/download/v2.325.0/actions-runner-linux-x64-2.325.0.tar.gz
+    dest: /actions-runner
+    remote_src: yes
+    owner: github-runner
+    group: github-runner
+
+- name: Get token
+  ansible.builtin.shell: |
+    gh api --method post -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/orgs/dsaniset23/actions/runners/registration-token
+  register: token
+  become_user: ec2-user
+
+- name: Create runner and register the configuration experience
+  ansible.builtin.shell: ./config.sh --url https://github.com/dsaniset23/roboshop-terraform --token {{token.stdout}} --name {{ansible_hostname}} --runnergroup default
+  become_user: github-runner
+  args:
+    chg_dir: /actions-runner
+  ignore_errors: yes
+
+#To make this a service, we need to copy the service file
+- name: Copy the service file
+  ansible.builtin.copy:
+    src: github-runner.service
+    dest: /etc/systemd/system/github-runner.service
+
+- name: Start the service
+  ansible.builtin.systemd_service:
+    name: github-runner
+    enabled: true
+    state: restarted
+    daemon-reload: true
