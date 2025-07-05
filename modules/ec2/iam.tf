@@ -20,6 +20,8 @@ resource "aws_iam_role" "role" {
 }
 
 resource "aws_iam_role_policy" "role_policy" {
+  count = length(var.policy_list) > 0 ? 1 : 0
+
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -30,11 +32,14 @@ resource "aws_iam_role_policy" "role_policy" {
       },
     ]
   })
+
   role = aws_iam_role.role[0].name
 }
 
+
 resource "aws_iam_instance_profile" "instance_" {
   count = length(var.policy_list) > 0 ? 1 : 0
+
   name = "${var.tool_name}-role"
   role = aws_iam_role.role[0].name
 }
