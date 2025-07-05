@@ -29,7 +29,9 @@ resource "aws_iam_role_policy" "role_policy" {
         Resource = "*"
       },
     ]
-  })  role   = aws_iam_role.role.id
+  })
+
+  role   = aws_iam_role.role.id
 }
 
 resource "aws_iam_instance_profile" "instance_" {}

@@ -1,4 +1,4 @@
-module "vault" {
+module "ec2" {
   for_each = var.tools
   source = "./modules/ec2"
   app_port      = each.value["app_port"]
