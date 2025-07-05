@@ -11,10 +11,6 @@ terraform-vault:
 	terraform init
 	terraform apply -auto-approve -var vault_token=$(vault_token)
 
-ansible-install:
-    yum install -y epel-release
-    yum install -y ansible
-
 dev-destroy:
 	rm -rf .terraform
 	terraform init -backend-config=env-dev/state.tfvars
