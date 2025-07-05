@@ -16,10 +16,10 @@ dev-destroy:
 	terraform init -backend-config=env-dev/state.tfvars
 	terraform destroy -auto-approve -var-file=env-dev/main.tfvars
 
-ansible-install:
-    yum install -y epel-release
-    yum install -y ansible
-
 terraform-install:
 	sudo curl -L -o /etc/yum.repos.d/hashicorp.repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 	sudo yum -y install terraform
+
+ansible-install:
+    yum install -y epel-release
+    yum install -y ansible
