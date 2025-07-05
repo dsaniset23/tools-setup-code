@@ -10,3 +10,7 @@ terraform-vault:
 	cd misc/vault_secrets/
 	terraform init
 	terraform apply -auto-approve -var vault_token=$(vault_token)
+
+terraform-destroy:
+	terraform init
+	terraform destroy -auto-approve
