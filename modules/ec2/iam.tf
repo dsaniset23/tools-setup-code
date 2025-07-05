@@ -31,7 +31,7 @@ resource "aws_iam_role_policy" "role_policy" {
     ]
   })
 
-  role   = aws_iam_role.role.id
+  role   = aws_iam_role.role.id[count.index]
 }
 
 resource "aws_iam_instance_profile" "instance_" {}
