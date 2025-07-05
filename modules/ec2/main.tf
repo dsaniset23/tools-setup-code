@@ -66,7 +66,7 @@ resource "aws_instance" "instance" {
       instance_interruption_behavior = "stop"
     }
   }
-  iam_instance_profile = ""
+  iam_instance_profile = length(var.policy_list) > 0 ? aws_iam_instance_profile.instance_profile[0].name : null
 }
 
 resource "aws_route53_record" "internal_record" {
