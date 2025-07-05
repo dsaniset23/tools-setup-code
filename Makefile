@@ -11,6 +11,10 @@ terraform-vault:
 	terraform init
 	terraform apply -auto-approve -var vault_token=$(vault_token)
 
+ansible-install:
+    yum install -y epel-release
+    yum install -y ansible
+
 dev-destroy:
 	rm -rf .terraform
 	terraform init -backend-config=env-dev/state.tfvars
@@ -19,7 +23,3 @@ dev-destroy:
 terraform-install:
 	sudo curl -L -o /etc/yum.repos.d/hashicorp.repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 	sudo yum -y install terraform
-
-ansible-install:
-    yum install -y epel-release
-    yum install -y ansible
