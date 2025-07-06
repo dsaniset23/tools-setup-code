@@ -7,7 +7,7 @@ variable "tools" {
       policy_list = []
     }
 
-    github_runner = {
+    github-runner = {
       app_port = 80
       instance_type = "t3.small"
       volume_size = 30
