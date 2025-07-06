@@ -7,8 +7,8 @@
 
 - name: Create directory
   ansible.builtin.file:
-    name: actions-runner
-    status: directory
+    name: /actions-runner
+    state: directory
     owner: github-runner
     group: github-runner
 
