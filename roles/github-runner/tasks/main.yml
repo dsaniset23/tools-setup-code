@@ -33,7 +33,11 @@
 
 - name: Create runner and register the configuration experience
   ansible.builtin.shell: |
-    ./config.sh --unattended --url https://github.com/dsaniset23 --token {{ token.stdout }}  --name {{ ansible_hostname }} --runnergroup Default
+    ./config.sh --unattended \
+                --url https://github.com/dsaniset23 \
+                --token {{ token.stdout }} \
+                --name {{ ansible_hostname }} \
+                --runnergroup Default
   become_user: github-runner
   args:
     chdir: /actions-runner
