@@ -1,4 +1,4 @@
-default:
+dev-create:
 	git pull
 	terraform init
 	terraform apply -auto-approve

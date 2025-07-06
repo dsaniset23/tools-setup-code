@@ -55,3 +55,13 @@
     enabled: true
     state: restarted
     daemon-reload: true
+
+- name: Copy terraform
+  ansible.builtin.get_url:
+    src: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    dest: /etc/yum.repos.d/hashicorp.repo
+
+- name: Install terraform
+  ansible.builtin.dnf:
+    name: terraform
+    state: Installed

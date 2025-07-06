@@ -1,5 +1,5 @@
 [Unit]
-Description=GitHub Actions Runner (raghudevopsb81.ip-172-31-42-37)
+Description=GitHub Actions Runner
 After=network.target
 
 [Service]
