@@ -35,7 +35,7 @@
   ansible.builtin.shell: |
     ./config.sh --unattended \
                 --url https://github.com/dsaniset23 \
-                --token {{ token.stdout }} \
+                --token {{ token.stdout | trim }} \
                 --name {{ ansible_hostname }} \
                 --runnergroup Default
   become_user: github-runner
