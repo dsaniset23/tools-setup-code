@@ -64,4 +64,4 @@
 - name: Install terraform
   ansible.builtin.dnf:
     name: terraform
-    state: Installed
+    state: installed
