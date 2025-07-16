@@ -19,3 +19,8 @@ dev-destroy:
 terraform-install:
 	sudo curl -L -o /etc/yum.repos.d/hashicorp.repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 	sudo yum -y install terraform
+
+docker-install:
+    dnf -y install dnf-plugins-core
+    dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+    dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
