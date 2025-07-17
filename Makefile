@@ -24,3 +24,5 @@ docker-install:
 	dnf -y install dnf-plugins-core
 	dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
 	dnf install docker-ce
+	dnf systemctl start docker
+	dnf systemctl enable docker
