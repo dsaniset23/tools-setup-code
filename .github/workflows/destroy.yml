@@ -1,4 +1,4 @@
-name: Terraform provisioning
+name: Terraform destroy
 on: [workflow_dispatch]
 jobs:
   provisioning_terraform:
