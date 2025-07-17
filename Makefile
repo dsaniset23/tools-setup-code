@@ -21,6 +21,6 @@ terraform-install:
 	sudo yum -y install terraform
 
 docker-install:
-    dnf -y install dnf-plugins-core
-    dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
-    systemctl start docker
+	dnf -y install dnf-plugins-core
+	dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+	systemctl start docker
