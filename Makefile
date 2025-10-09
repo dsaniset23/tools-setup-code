@@ -14,7 +14,7 @@ terraform-vault:
 dev-destroy:
 	rm -rf .terraform
 	terraform init
-	terraform destroy
+	terraform destroy -auto-approve
 
 terraform-install:
 	sudo curl -L -o /etc/yum.repos.d/hashicorp.repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
