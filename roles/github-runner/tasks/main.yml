@@ -49,6 +49,12 @@
     groups: docker
     append: yes
 
+- name: Restart github-runner service (to reload groups)
+  ansible.builtin.systemd:
+    name: github-runner
+    state: restarted
+  ignore_errors: yes
+
 - name: Enable and start Docker service
   ansible.builtin.service:
     name: docker
