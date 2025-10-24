@@ -5,6 +5,7 @@ After=network.target
 [Service]
 ExecStart=/actions-runner/run.sh
 User=github-runner
+SupplementaryGroups=docker
 WorkingDirectory=/actions-runner
 KillMode=process
 KillSignal=SIGTERM
