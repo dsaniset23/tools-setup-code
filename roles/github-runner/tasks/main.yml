@@ -12,7 +12,7 @@
     owner: github-runner
     group: github-runner
 
-- name: Download the file
+- name: Download the runner
   ansible.builtin.unarchive:
     src: https://github.com/actions/runner/releases/download/v2.325.0/actions-runner-linux-x64-2.325.0.tar.gz
     dest: /actions-runner
@@ -30,36 +30,6 @@
     gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /orgs/dsaniset23/actions/runners/registration-token | jq .token
   register: token
   become_user: ec2-user
-
-- name: Add Docker repository
-  ansible.builtin.get_url:
-    url: https://download.docker.com/linux/rhel/docker-ce.repo
-    dest: /etc/yum.repos.d/docker.repo
-
-- name: Install Docker CE
-  ansible.builtin.dnf:
-    name: docker-ce
-    state: present
-    disable_gpg_check: yes
-    allow_downgrade: yes
-
-- name: Add github-runner to docker group
-  ansible.builtin.user:
-    name: github-runner
-    groups: docker
-    append: yes
-
-- name: Restart github-runner service (to reload groups)
-  ansible.builtin.systemd:
-    name: github-runner
-    state: restarted
-  ignore_errors: yes
-
-- name: Enable and start Docker service
-  ansible.builtin.service:
-    name: docker
-    enabled: yes
-    state: started
 
 - name: Create runner and register the configuration experience
   ansible.builtin.shell: |
@@ -105,6 +75,14 @@
   ansible.builtin.dnf:
     name: kubectl
     state: installed
+
+- name: Install Docker
+  ansible.builtin.shell: |
+    curl -o /etc/yum.repos.d/docker.repo https://download.docker.com/linux/rhel/docker-ce.repo
+    dnf install docker-ce --nobest -y
+    usermod -a -G docker github-runner
+    systemctl enable docker
+    systemctl start docker
 
 - name: LVM Layout
   ansible.builtin.include_role:
