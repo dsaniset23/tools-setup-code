@@ -4,6 +4,7 @@ dev-create:
 	terraform apply -auto-approve
 
 ansible:
+	git pull
 	ansible-playbook -i $(tool_name)-internal.devops24.shop, -e ansible_user=ec2-user -e ansible_password=DevOps321 -e tool_name=$(tool_name) main.yml
 
 terraform-vault:
