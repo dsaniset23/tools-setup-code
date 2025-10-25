@@ -88,3 +88,20 @@
   ansible.builtin.include_role:
     name: common
     tasks_from: lvm
+
+- name: downloading helm
+  ansible.builtin.get_url:
+    src: https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+    dest: /tmp/get_helm.sh
+    mode: 0775
+
+- name: Installing the helm
+  ansible.builtin.command: /tmp/get_helm.sh
+  args:
+    creates: /usr/local/bin/helm
+
+- name: Installing argoCD
+  ansible.builtin.get_url:
+    src: https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+    dest: /usr/local/bin/argocd
+    mode: 0555
