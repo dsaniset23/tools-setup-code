@@ -99,17 +99,10 @@
 - name: Extract Helm binary
   ansible.builtin.unarchive:
     src: /tmp/helm-v3.19.0-linux-amd64.tar.gz
-    dest: /tmp
-    remote_src: yes
-    extra_opts: [--strip-components=1]   # removes 'linux-amd64' folder inside tar
-
-- name: Move Helm to /usr/local/bin
-  ansible.builtin.copy:
-    src: /tmp/helm
-    dest: /usr/local/bin/helm
+    dest: /usr/local/bin/
     mode: '0755'
     remote_src: yes
-    force: no
+    extra_opts: [--strip-components=1]   # removes 'linux-amd64' folder inside tar
 
 - name: Ensure Helm is callable
   ansible.builtin.command: helm version
