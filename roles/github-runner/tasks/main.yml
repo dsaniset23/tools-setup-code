@@ -105,7 +105,7 @@
     extra_opts: [--strip-components=1]   # removes 'linux-amd64' folder inside tar
 
 - name: Ensure Helm is callable
-  ansible.builtin.command: helm version
+  ansible.builtin.command: /usr/local/bin/helm version
   register: helm_check
   failed_when: "'Version' not in helm_check.stdout"
   changed_when: false
