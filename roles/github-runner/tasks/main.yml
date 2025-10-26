@@ -107,7 +107,8 @@
 - name: Ensure Helm is callable
   ansible.builtin.command: helm version
   register: helm_check
-  failed_when: helm_check.rc != 0
+  failed_when: "'Version' not in helm_check.stdout"
+  changed_when: false
 
 
 - name: Installing argoCD
