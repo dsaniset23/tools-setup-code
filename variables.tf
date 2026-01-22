@@ -20,5 +20,5 @@ variable "zone_id" {
   default = "Z09304471M1HNSZIX3178"
 }
 variable "domain_name" {
-  default = "devops24.shop"
+  default = "kdevops23.online"
 }
