@@ -25,8 +25,10 @@ docker-install:
 	dnf -y install dnf-plugins-core
 	dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
 	dnf install docker-ce
-	dnf systemctl start docker
-	dnf systemctl enable docker
+	systemctl start docker
+	systemctl enable docker
+
+#Requires root access
 
 kubernetes-install:
 	curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
