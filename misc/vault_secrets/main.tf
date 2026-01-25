@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "roboshop-611"
+    bucket = "roboshop-612"
     key    = "vault_secrets/terraform.state"
     region = "us-east-1"
   }
