@@ -25,11 +25,36 @@
     name: libicu
     state: installed
 
+- name: Install GitHub CLI
+  become: yes
+  ansible.builtin.shell: |
+    type -p curl >/dev/null || (sudo dnf install curl -y)
+    sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+    sudo dnf install gh -y
+
 - name: Get token
   ansible.builtin.shell: |
     gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /orgs/dsaniset23/actions/runners/registration-token | jq .token
   register: token
   become_user: ec2-user
+
+#- name: Get GitHub Registration Token via API
+#  ansible.builtin.uri:
+#    url: "https://api.github.com/repos/{{ github_user }}/{{ repo_name }}/actions/runners/registration-token"
+#    method: POST
+#    headers:
+#      Authorization: "token {{ github_pat }}"
+#      Accept: "application/vnd.github+json"
+#    status_code: 201
+#  register: token_response
+#
+#- name: Set token fact
+#  ansible.builtin.set_fact:
+#    runner_token: "{{ token_response.json.token }}"
+#
+#- name: Debug the token
+#  ansible.builtin.debug:
+#    var: runner_token
 
 - name: Create runner and register the configuration experience
   ansible.builtin.shell: |
