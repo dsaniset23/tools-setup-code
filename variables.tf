@@ -17,7 +17,7 @@ variable "tools" {
 }
 
 variable "zone_id" {
-  default = "Z09304471M1HNSZIX3178"
+  default = "Z1024318Z55DK5FV70OA"
 }
 variable "domain_name" {
   default = "kdevops23.online"
