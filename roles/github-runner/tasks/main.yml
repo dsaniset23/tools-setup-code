@@ -114,6 +114,12 @@
     name: common
     tasks_from: lvm
 
+- name: Installing argoCD
+  ansible.builtin.get_url:
+    url: https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+    dest: /usr/local/bin/argocd
+    mode: '0755'
+
 - name: Download Helm binary
   ansible.builtin.get_url:
     url: https://get.helm.sh/helm-v3.19.0-linux-amd64.tar.gz
@@ -135,8 +141,3 @@
   failed_when: "'Version' not in helm_check.stdout"
   changed_when: false
 
-- name: Installing argoCD
-  ansible.builtin.get_url:
-    url: https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
-    dest: /usr/local/bin/argocd
-    mode: '0555'
