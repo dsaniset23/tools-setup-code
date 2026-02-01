@@ -17,6 +17,9 @@ dev-destroy:
 	terraform init
 	terraform destroy -auto-approve
 
+ansible-install:
+	sudo sudo dnf install -y ansible-core
+
 terraform-install:
 	sudo curl -L -o /etc/yum.repos.d/hashicorp.repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 	sudo yum -y install terraform
