@@ -22,3 +22,6 @@ variable "zone_id" {
 variable "domain_name" {
   default = "kdevops23.online"
 }
+variable "to_deploy" {
+  default = ["runner"]
+}
