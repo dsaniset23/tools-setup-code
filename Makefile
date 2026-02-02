@@ -36,3 +36,8 @@ docker-install:
 kubernetes-install:
 	curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 	sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+gh-authenticate:
+	sudo curl -L -o /etc/yum.repos.d/gh-cli.repo https://cli.github.com/packages/rpm/gh-cli.repo
+	sudo dnf install gh -y
+	gh auth login -s admin:org
