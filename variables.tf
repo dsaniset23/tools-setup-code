@@ -23,5 +23,5 @@ variable "domain_name" {
   default = "kdevops23.online"
 }
 variable "to_deploy" {
-  default = ["runner","vault"]
+  default = ["runner"]
 }
