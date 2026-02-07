@@ -51,14 +51,17 @@ resource "aws_instance" "instance" {
     volume_size = var.volume_size
   }
 
-  for_each = var.market_type == "spot" ? [1] : []
-  instance_market_options {
-    market_type = var.market_type
-    spot_options {
-      spot_instance_type = "persistent"
-      instance_interruption_behavior = "stop"
+  dynamic "instance_market_options" {
+    for_each = var.market_type == "spot" ? [1] : []
+    content {
+      market_type = "spot"
+      spot_options {
+        spot_instance_type             = "persistent"
+        instance_interruption_behavior = "stop"
+      }
     }
   }
+
   iam_instance_profile = length(var.policy_list) > 0 ? aws_iam_instance_profile.instance_profile[0].name : null
 }
 
