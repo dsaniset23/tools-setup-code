@@ -5,3 +5,4 @@ variable "zone_id" {}
 variable "app_port" {}
 variable "volume_size" {}
 variable "policy_list" {}
+variable "market_type" {}

@@ -12,4 +12,5 @@ module "ec2" {
   zone_id       = var.zone_id
   volume_size   = each.value["volume_size"]
   policy_list   = each.value["policy_list"]
+  market_type   = each.value["market_type"]
 }

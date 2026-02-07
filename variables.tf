@@ -5,13 +5,15 @@ variable "tools" {
       instance_type = "t3.small"
       volume_size = 20
       policy_list = []
+      market_type = "spot"
     }
 
     github-runner = {
       app_port = 80
-      instance_type = "t3.small"
+      instance_type = "t3.medium"
       volume_size = 65
       policy_list = ["*"]
+      market_type = "spot"
     }
   }
 }
